@@ -1,0 +1,310 @@
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Моя сторінка</title>
+  
+  <!-- Підключення шрифту Carolina Cowgirl -->
+  <link href="https://fonts.cdnfonts.com/css/carolina-cowgirl" rel="stylesheet">
+
+  <style>
+    /* Анімований бежево-коричневий градієнтний фон */
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(-45deg, #f5f0eb, #e6d5c3, #d7be82, #b8977e, #f5f0eb);
+      background-size: 400% 400%;
+      animation: gradient 15s ease infinite;
+      
+      /* Шоколадний колір та шрифт Carolina Cowgirl */
+      font-family: 'Carolina Cowgirl', 'Carolina Cowgirl Rustic', cursive, sans-serif;
+      color: #4A2E1B; /* Шоколадний відтінок */
+      overflow-x: hidden;
+    }
+
+    /* Анімація переливання */
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Стилізація всіх текстових елементів */
+    h1, h2, h3, p, a, span, button {
+      font-family: 'Carolina Cowgirl', 'Carolina Cowgirl Rustic', cursive, sans-serif;
+      color: #4A2E1B;
+    }
+
+    /* Прозора верхня навігація (Шапка) */
+    .top-nav {
+      position: sticky;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: transparent; /* Повністю прозора */
+      display: flex;
+      align-items: center;
+      padding: 15px 30px;
+      gap: 20px;
+      box-sizing: border-box;
+      z-index: 999;
+    }
+
+    /* Клікабельна іконка на головну */
+    .logo-btn {
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    /* Збільшений у 3 рази логотип */
+    .logo-btn img {
+      width: 240px;
+      height: auto;
+      max-height: 240px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+      transition: transform 0.2s;
+    }
+
+    .logo-btn img:hover {
+      transform: scale(1.05);
+    }
+
+    /* Кнопки в шапці */
+    .nav-link {
+      background: none;
+      border: none;
+      font-size: 20px;
+      cursor: pointer;
+      padding: 8px 12px;
+      border-radius: 6px;
+      transition: background 0.3s, transform 0.2s;
+      text-decoration: none;
+    }
+
+    .nav-link:hover {
+      background: rgba(74, 46, 27, 0.1);
+      transform: translateY(-2px);
+    }
+
+    /* Секції (вкладки) */
+    .tab-content {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      min-height: 80vh;
+      padding: 40px 20px;
+      box-sizing: border-box;
+    }
+
+    .tab-content.active {
+      display: flex;
+    }
+
+    /* Шахматні блоки Контенту (Зображення + Текст) */
+    .content-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      max-width: 1200px;
+      margin: 35px 0;
+      gap: 40px;
+    }
+
+    .content-row.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .content-block {
+      flex: 1;
+      text-align: center;
+    }
+
+    /* Зображення з мікротінню */
+    .content-block img {
+      width: 100%;
+      max-width: 520px;
+      height: auto;
+      border-radius: 16px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .content-block img:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Клас для видалення тіні у першому блоці */
+    .no-shadow {
+      box-shadow: none !important;
+    }
+
+    .no-shadow:hover {
+      box-shadow: none !important;
+      transform: translateY(-4px);
+    }
+
+    .content-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+    }
+
+    .content-text h3 {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    .content-text p {
+      font-size: 24px;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    /* Прозорий футер у самому низу */
+    footer {
+      width: 100%;
+      background: transparent;
+      padding: 30px 20px;
+      text-align: center;
+      box-sizing: border-box;
+      margin-top: 50px;
+    }
+
+    footer h3 {
+      margin-bottom: 15px;
+      font-size: 30px;
+    }
+
+    footer p {
+      margin: 8px 0;
+      font-size: 20px;
+    }
+
+    /* Адаптивність для мобільних пристроїв */
+    @media (max-width: 768px) {
+      .top-nav {
+        flex-wrap: wrap;
+      }
+
+      .logo-btn img {
+        width: 160px;
+        max-height: 160px;
+      }
+
+      .content-row, .content-row.reverse {
+        flex-direction: column;
+        gap: 20px;
+      }
+
+      .content-block img {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Верхня прозора навігація (Шапка) -->
+  <div class="top-nav">
+    <a onclick="showTab('home')" class="logo-btn" title="На головну">
+      <img src="1.png" alt="Логотип">
+    </a>
+    <button class="nav-link" onclick="showTab('home')">Для фізичних осіб</button>
+    <button class="nav-link" onclick="showTab('home')">Для Бізнесу</button>
+    <button class="nav-link" onclick="showTab('home')">Підтримка</button>
+  </div>
+
+  <!-- Головна сторінка -->
+  <div id="home" class="tab-content active">
+    <h1 style="font-size: 46px;">Що ми пропонуємо для вас:</h1>
+
+    <div style="margin-top: 20px; width: 100%; display: flex; flex-direction: column; align-items: center;">
+      
+      <!-- Блок 1: Зображення зліва (без тіні), Текст зправа -->
+      <div class="content-row">
+        <div class="content-block">
+          <img src="02.png" alt="Зображення 02" class="no-shadow">
+        </div>
+        <div class="content-block content-text">
+          <h3>Galactic Cards</h3>
+          <p>Картки з галактичними можливостями</p>
+        </div>
+      </div>
+
+      <!-- Блок 2: Текст зліва, Зображення зправа -->
+      <div class="content-row reverse">
+        <div class="content-block">
+          <img src="03.png" alt="Зображення 03">
+        </div>
+        <div class="content-block content-text">
+          <h3>Відпочинок без обмежень</h3>
+          <p>Поки відпочиваєте, гроші пливуть від вас</p>
+        </div>
+      </div>
+
+      <!-- Блок 3: Зображення зліва, Текст зправа -->
+      <div class="content-row">
+        <div class="content-block">
+          <img src="04.png" alt="Зображення 04">
+        </div>
+        <div class="content-block content-text">
+          <h3>Кредити до 1млн грн</h3>
+          <p>Отримуєте кредит, а разом з ним високу річну ставку</p>
+        </div>
+      </div>
+
+      <!-- Блок 4: Текст зліва, Зображення зправа -->
+      <div class="content-row reverse">
+        <div class="content-block">
+          <img src="05.png" alt="Зображення 05">
+        </div>
+        <div class="content-block content-text">
+          <h3>Ви раби - ми боги</h3>
+          <p>Працюйте, а ми ваші кошти виведемо а Кіпр</p>
+        </div>
+      </div>
+
+      <!-- Блок 5: Зображення зліва, Текст зправа -->
+      <div class="content-row">
+        <div class="content-block">
+          <img src="06.png" alt="Зображення 06">
+        </div>
+        <div class="content-block content-text">
+          <h3>Мрійте про дохід</h3>
+          <p>Хочете багатства - губу закатали назад</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Прозорий футер (Контакти для зв'язку) -->
+  <footer>
+    <h3>Контакти на офіси</h3>
+    <p><strong>Телефон:</strong> +380 (00) 000-00-00</p>
+    <p><strong>Пошта:</strong> support@example.com</p>
+    <p><strong>Адреса:</strong> м. Дніпро, вул. Обману, буд. 0</p>
+  </footer>
+
+  <!-- Скрипт для перемикання вкладок -->
+  <script>
+    function showTab(tabId) {
+      const tabs = document.querySelectorAll('.tab-content');
+      tabs.forEach(tab => tab.classList.remove('active'));
+
+      document.getElementById(tabId).classList.add('active');
+
+      // Прокручуємо до верху сторінки
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
